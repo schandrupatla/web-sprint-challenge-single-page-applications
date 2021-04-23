@@ -1,5 +1,6 @@
 import React from "react";
-export default function Home(props){
+import {Link}  from 'react-router-dom'
+export default function Form(props){
     const { values, submit, change, disabled, errors } = props;
 
     const onSubmit = (evt) => {
@@ -15,7 +16,7 @@ export default function Home(props){
 
 
     return(
-    <form className="form container" onSubmit={onSubmit}>
+    <form id="pizza-form" onSubmit={onSubmit}>
       <div className="form-group submit">
         <header>
         <h2>Order a Pizza</h2>
@@ -28,14 +29,17 @@ export default function Home(props){
     </div>
         </header>
 
-        <button id="submitBtn" disabled={disabled}>Pizza?</button>
-
+        {/* <button id="submitBtn" disabled={disabled}>Pizza?</button> */}
+        {/* <button id="submitBtn">Pizza?
+        </button> */}
+           <Link to="./Form">
+              <button id="submitBtn"> Pizza?</button>
+        </Link >
         <div className="errors">
           {/* 🔥 RENDER THE VALIDATION ERRORS HERE */}
           <div>{errors.username}</div>
-          <div>{errors.email}</div>
-          <div>{errors.role}</div>
-          <div>{errors.civil}</div>
+          <div>{errors.size}</div>
+          <div>{errors.hobbies}</div>
         </div>
       </div>
 
@@ -46,6 +50,7 @@ export default function Home(props){
         <label>
           Username&nbsp;
           <input
+            id="name-input"
             value={values.username}
             onChange={onChange}
             name="username"
@@ -57,7 +62,7 @@ export default function Home(props){
         <label>
           {/* //role */}
           Choice of size(required)&nbsp;
-          <select onChange={onChange} value={values.size} name="size">
+          <select id="size-dropdown" onChange={onChange} value={values.size} name="size">
             <option value="">- Select an option -</option>
             <option value="small">Small</option>
             <option value="medium">Medium</option>
@@ -111,6 +116,7 @@ export default function Home(props){
         <label>
           Special Instructions&nbsp;
           <input
+            id="special-text"
             placeholder="Anything else you'd like to add?"
             value={values.comments}
             onChange={onChange}
@@ -120,7 +126,8 @@ export default function Home(props){
         </label>
        </div>
        <div>
-          <button>Order</button>
+          {/* <button>Order</button> */}
+          <button id="order-button" disabled={disabled}>Order Pizza</button>
         </div>
       </div>
     </form>

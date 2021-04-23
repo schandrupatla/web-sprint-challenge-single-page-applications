@@ -27,7 +27,7 @@ const initialFormErrors = {
   cheese: false,
   chicken: false,
   veggies: false,
-  comments:""
+  comments:"",
 };
 const initialDisabled = true;
 
@@ -64,6 +64,7 @@ const [formValues, setFormValues] = useState(initialFormValues); // object
   axios
     .post("https://reqres.in/api/orders", newOrder)
     .then((res) => {
+      console.log(res.data);
       setOrders([res.data, ...orders]);
       setFormValues(initialFormValues);
     })
@@ -91,20 +92,22 @@ useEffect(() => {
     setDisabled(!valid);
   });
 }, [formValues]);
-  //sree
-  // <Switch>
-  //       <Route path={'/:id'}>
-  //         <Form />
-  //         </Route>
 
-  //         <Route path='/confirmation'>
-  //         <confirmation />
-  //       </Route>
+
+  //sree
+  <Switch>
+        <Route path={'/:id'}>
+          <Home />
+          </Route>
+
+          <Route path='/confirmation'>
+          <confirmation />
+        </Route>
           
-  //         <Route exact path='/'>
-  //         <Home />
-  //         </Route>
-  // </Switch>
+          <Route path='/pizza'>
+          <Form />
+          </Route>
+  </Switch>
 //sree
 
 
@@ -115,8 +118,10 @@ useEffect(() => {
       <div className="container">
       <header>
         <h1>Pizza App</h1>
+        {/* <button id="submitBtn" >Pizza?</button> */}
+        
       </header>
-      <Form
+      <Form  id="pizza-form" 
          values ={formValues}
          change={inputChange}
          submit={formSubmit}
